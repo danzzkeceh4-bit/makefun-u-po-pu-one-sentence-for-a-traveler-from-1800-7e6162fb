@@ -30,6 +30,9 @@ def main() -> int:
     if not SENTENCE.strip():
         print("error: sentence is blank", file=sys.stderr)
         return 1
+    if SENTENCE.count(".") != 1 or "\n" in SENTENCE or "\r" in SENTENCE:
+        print("error: entry must be exactly one sentence", file=sys.stderr)
+        return 1
     out_dir = os.environ.get("MAKEFUN_OUTPUT_DIR", "/output")
     os.makedirs(out_dir, exist_ok=True)
     path = os.path.join(out_dir, "entry.txt")
